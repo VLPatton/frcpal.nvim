@@ -24,7 +24,6 @@ function M.gradle(cmd)
     uv.read_start(stdout, function(err, data)
         assert(not err, err)
         if data then
-            print(data)
             ui.output(data)
         end
     end)

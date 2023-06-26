@@ -25,7 +25,7 @@ end
 
 function M.output(data)
     vim.schedule(function()
-        vim.api.nvim_buf_set_lines(M.bufno, -1, -1, true, data)
+        vim.api.nvim_buf_set_lines(M.bufno, -1, -1, true, {data})
     end)
 end
 
