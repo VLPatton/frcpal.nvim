@@ -27,6 +27,7 @@ function M.output(data)
     vim.schedule(function()
         local data_no_lf = string.gsub(data, '\n', '')
         vim.api.nvim_buf_set_lines(M.bufno, -1, -1, true, {data_no_lf})
+        vim.bo[M.bufno].modified = false
     end)
 end
 
