@@ -4,8 +4,8 @@ local M = {}
 M.bufno = -1
 
 function M.create_window(title)
-    local width = 64
-    local height = 24
+    local width = 80
+    local height = 30
     local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
     M.bufno = vim.api.nvim_create_buf(false, false)
 
@@ -18,6 +18,8 @@ function M.create_window(title)
         height = height,
         border = 'rounded'
     })
+
+    vim.keymap.set('n', 'q', ':bd!<CR>', { buffer=M.bufno })
 
     return winno
 end
