@@ -1,4 +1,4 @@
-local ui = require('frcpal.ui')
+local ui = require('ui')
 local uv = vim.loop
 
 local M = {}
