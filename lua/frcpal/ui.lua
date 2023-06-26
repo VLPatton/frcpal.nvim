@@ -25,7 +25,8 @@ end
 
 function M.output(data)
     vim.schedule(function()
-        vim.api.nvim_buf_set_lines(M.bufno, -1, -1, true, {string.gsub(data, '\n', '')})
+        local data_no_lf = string.gsub(data, '\n', '')
+        vim.api.nvim_buf_set_lines(M.bufno, -1, -1, true, {data_no_lf})
     end)
 end
 
