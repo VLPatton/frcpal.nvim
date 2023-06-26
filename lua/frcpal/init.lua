@@ -12,30 +12,29 @@ function M.gradle(cmd)
     local stderr = uv.new_pipe()
 
     local handle, pid = uv.spawn(gradlew, {
-        args = {'build'},
+        args = {cmd},
         stdio = {stdin, stdout, stderr}
     }, function(code, signal)
         print('exit code', code)
     end)
 
-    if not handle == nil then
-        local winno = ui.create_window("Gradle")
+    assert(handle, 'process handle nil')
+    local winno = ui.create_window("Gradle")
 
-        uv.read_start(stdout, function(err, data)
-            assert(not err, err)
-            if data then
-                print(data)
-                ui.output(data)
-            end
-        end)
+    uv.read_start(stdout, function(err, data)
+        assert(not err, err)
+        if data then
+            print(data)
+            ui.output(data)
+        end
+    end)
 
-        uv.shutdown(stdin, function()
-            print("stdin shutdown", stdin)
-            uv.close(handle, function()
-                print("process closed", handle, pid)
-            end)
+    uv.shutdown(stdin, function()
+        print("stdin shutdown", stdin)
+        uv.close(handle, function()
+            print("process closed", handle, pid)
         end)
-    end
+    end)
 end
 
 
