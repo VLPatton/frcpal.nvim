@@ -31,7 +31,9 @@ end
 
 
 function M.output(data)
-    vim.api.nvim_chan_send(M.channo, data)
+    vim.schedule(function()
+        vim.api.nvim_chan_send(M.channo, data)
+    end)
 end
 
 return M
