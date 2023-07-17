@@ -2,6 +2,7 @@
 local M = {}
 
 M.bufno = -1
+M.channo = -1
 
 function M.create_window(title)
     local width = 80
@@ -21,16 +22,14 @@ function M.create_window(title)
 
     vim.keymap.set('n', 'q', ':bd!<CR>', { buffer=M.bufno })
 
+    M.channo = vim.api.nvim_open_term(M.bufno)
+
     return winno
 end
 
 
 function M.output(data)
-    vim.schedule(function()
-        local data_no_lf = string.gsub(data, '\n', '')
-        vim.api.nvim_buf_set_lines(M.bufno, -1, -1, true, {data_no_lf})
-        vim.bo[M.bufno].modified = false
-    end)
+    vim.api.nvim_chan_send(M.channo, data)
 end
 
 return M
