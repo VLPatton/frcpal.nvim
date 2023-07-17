@@ -27,6 +27,13 @@ function M.gradle(cmd)
             ui.output(data)
         end
     end)
+    
+    uv.read_start(stderr, function(err, data)
+        assert(not err, err)
+        if data then
+            ui.output(data)
+        end
+    end)
 
     uv.shutdown(stdin, function()
         print("stdin shutdown", stdin)
