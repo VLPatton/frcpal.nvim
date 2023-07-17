@@ -22,7 +22,9 @@ function M.create_window(title)
 
     vim.keymap.set('n', 'q', ':bd!<CR>', { buffer=M.bufno })
 
-    M.channo = vim.api.nvim_open_term(M.bufno)
+    M.channo = vim.api.nvim_open_term(M.bufno, {
+        on_input = function()end
+    })
 
     return winno
 end
