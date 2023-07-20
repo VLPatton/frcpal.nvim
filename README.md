@@ -1,6 +1,7 @@
 # FRC Command Palette for NeoVim
 ## frcpal.nvim
 This is a plugin I wrote for myself because I dislike using VS Code for everything in FRC.
+Please fork if you have a feature request that you would like to implement.
 
 ## Usage
 Install through `packer.nvim`:
@@ -23,10 +24,15 @@ vim.keymap.set('n', '<leader>pD', frcpal.get_vendordep) -- pD for Project Depend
 This project is NOT AFFILIATED in any capacity with *FIRST*, *FIRST* Robotics Competition, or any related organizations.
 Please DO NOT submit issues to *FIRST* regarding this plugin; issues should be submitted through Github in this repo.
 
+This project is licensed under the GNU Lesser General Public License version 3.
+The license is included under `COPYING.md` and `COPYING.LESSER.md`.
+
+Copyright (C) 2023 VLPatton
+
 ## Features
 * Gradle wrapper with custom commands for keybinds
+* Terminal buffer integration
 * Fetching vendordep JSON files from remote URI
 
 ## TODO
-* Integrate with `toggleterm.nvim` (maybe)
-* Add ability to create new project through 
+* Add ability to create new project
